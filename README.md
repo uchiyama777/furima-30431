@@ -11,29 +11,31 @@
 | family_name        | string              | null: false             |
 | first_name_kana    | string              | null: false             |
 | family_name_kana   | string              | null: false             |
-| birth_day          | text                | null: false             |
+| birth_day          | date                | null: false             |
 
 ### Association
 
-* has_many :items
-* has_many :comments
-* belongs_to :purchases
+* has_many :item
+* has_many :comment
+* belongs_to :purchase
 
 ## items table
 
 | Column                              | Type       | Options           |
 |-------------------------------------|------------|-------------------|
-| image                               | string     | null: false       |
 | name                                | string     | null: false       |
 | description                         | text       | null: false       |
 | category                            | integer    | null: false       |
 | status                              | integer    | null: false       |
+| delivery_charge                     | text       | null: false       |
+| delivery_area                       | integer    | null: false       |
+| delivery_day                        | integer    | null: false       |
 | price                               | integer    | null: false       |
 
 ### Association
-
+- belongs_to :purchase
 - belongs_to :user
-- has_many :comments
+- has_many :comment
 
 ## comments table
 
@@ -45,7 +47,7 @@
 
 ### Association
 
-- belongs_to :items
+- belongs_to :item
 - belongs_to :user
 
 ## purchases table
@@ -57,7 +59,7 @@
 
 ### Association
 
-- belongs_to :items
+- belongs_to :item
 - belongs_to :user
 - has_one :profile
 
@@ -66,13 +68,13 @@
 | Column             | Type                | Options                 |
 |--------------------|---------------------|-------------------------|
 | postal_code        | string              | null: false             |
+| prefectures        | string              | null: false             |
 | city               | string              | null: false             |
-| adress1            | string              | null: false             |
-| adress2            | string              | null: false             |
-| building_name      | string              | null: false             |
+| municipality       | string              | null: false             |
+| building_name      | string              |             |
 | phone_number       | string              | null: false             |
-| user_id            | string              | null: false             |
+| item_id            | string              | null: false             |
 
 ### Association
 
-- belongs_to :purchases
+- belongs_to :purchase
