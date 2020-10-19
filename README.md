@@ -23,7 +23,7 @@
 
 | Column                              | Type       | Options           |
 |-------------------------------------|------------|-------------------|
-| name                                | string     | null: false, foreign_key: true|
+| name                                | string     | null: false       |
 | description                         | text       | null: false       |
 | category_id                         | integer    | null: false       |
 | status_id                           | integer    | null: false       |
@@ -33,9 +33,9 @@
 | price                               | integer    | null: false       |
 
 ### Association
-- belongs_to :purchase
 - belongs_to :user
 - has_one :comments
+- has_one :purchase
 
 ## comments table
 
@@ -61,7 +61,7 @@
 
 - belongs_to :item
 - belongs_to :user
-- has_one :profiles
+- has_one :profile
 
 ## profile table
 
