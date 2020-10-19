@@ -15,27 +15,27 @@
 
 ### Association
 
-* has_many :item
-* has_many :comment
-* belongs_to :purchase
+* has_many :items
+* has_many :comments
+* has_many :purchases
 
 ## items table
 
 | Column                              | Type       | Options           |
 |-------------------------------------|------------|-------------------|
-| name                                | string     | null: false       |
+| name                                | string     | null: false, foreign_key: true|
 | description                         | text       | null: false       |
-| category                            | integer    | null: false       |
-| status                              | integer    | null: false       |
-| delivery_charge                     | text       | null: false       |
-| delivery_area                       | integer    | null: false       |
-| delivery_day                        | integer    | null: false       |
+| category_id                         | integer    | null: false       |
+| status_id                           | integer    | null: false       |
+| delivery_charge_id                  | integer    | null: false       |
+| delivery_area_id                    | integer    | null: false       |
+| delivery_day_id                     | integer    | null: false       |
 | price                               | integer    | null: false       |
 
 ### Association
 - belongs_to :purchase
 - belongs_to :user
-- has_many :comment
+- has_many :comments
 
 ## comments table
 
@@ -61,7 +61,7 @@
 
 - belongs_to :item
 - belongs_to :user
-- has_one :profile
+- has_one :profiles
 
 ## profile table
 
@@ -71,9 +71,9 @@
 | prefectures        | string              | null: false             |
 | city               | string              | null: false             |
 | municipality       | string              | null: false             |
-| building_name      | string              |             |
+| building_name      | string              |                         |
 | phone_number       | string              | null: false             |
-| item_id            | string              | null: false             |
+| purchase           | references          | foreign_key: true       |
 
 ### Association
 
