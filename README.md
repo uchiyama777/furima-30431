@@ -23,6 +23,7 @@
 
 | Column                              | Type       | Options           |
 |-------------------------------------|------------|-------------------|
+| name                                | string     | null: false       |
 | user                                | references | null: false       |
 | description                         | text       | null: false       |
 | category_id                         | integer    | null: false       |
