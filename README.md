@@ -1,24 +1,78 @@
-# README
+# DB 設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users table
 
-Things you may want to cover:
+| Column             | Type                | Options                 |
+|--------------------|---------------------|-------------------------|
+| nickname           | string              | null: false             |
+| email              | string              | null: false             |
+| password           | string              | null: false             |
+| first_name         | string              | null: false             |
+| family_name        | string              | null: false             |
+| first_name_kana    | string              | null: false             |
+| family_name_kana   | string              | null: false             |
+| birth_day          | text                | null: false             |
 
-* Ruby version
+### Association
 
-* System dependencies
+* has_many :items
+* has_many :comments
+* belongs_to :purchases
 
-* Configuration
+## items table
 
-* Database creation
+| Column                              | Type       | Options           |
+|-------------------------------------|------------|-------------------|
+| image                               | string     | null: false       |
+| name                                | string     | null: false       |
+| description                         | text       | null: false       |
+| category                            | integer    | null: false       |
+| status                              | integer    | null: false       |
+| price                               | integer    | null: false       |
 
-* Database initialization
+### Association
 
-* How to run the test suite
+- belongs_to :user
+- has_many :comments
 
-* Services (job queues, cache servers, search engines, etc.)
+## comments table
 
-* Deployment instructions
+| Column      | Type       | Options           |
+|-------------|------------|-------------------|
+| text        | text       | null: false       |
+| item_id     | references | foreign_key: true |
+| user_id     | references | foreign_key: true |
 
-* ...
+### Association
+
+- belongs_to :items
+- belongs_to :user
+
+## purchases table
+
+| Column      | Type       | Options           |
+|-------------|------------|-------------------|
+| item        | references | foreign_key: true |
+| user        | references | foreign_key: true |
+
+### Association
+
+- belongs_to :items
+- belongs_to :user
+- has_one :profile
+
+## profile table
+
+| Column             | Type                | Options                 |
+|--------------------|---------------------|-------------------------|
+| postal_code        | string              | null: false             |
+| city               | string              | null: false             |
+| adress1            | string              | null: false             |
+| adress2            | string              | null: false             |
+| building_name      | string              | null: false             |
+| phone_number       | string              | null: false             |
+| user_id            | string              | null: false             |
+
+### Association
+
+- belongs_to :purchases
