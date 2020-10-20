@@ -19,7 +19,7 @@
 * has_many :comments
 * has_many :purchases
 
-## items table
+## furimas table
 
 | Column                              | Type       | Options           |
 |-------------------------------------|------------|-------------------|
