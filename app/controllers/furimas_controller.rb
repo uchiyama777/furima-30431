@@ -5,6 +5,19 @@ class FurimasController < ApplicationController
   def index
   end
 
+  def new
+  end
+
+  def create
+  end
+
+  def destroy
+  end
+
+  def update
+  end
+
+
  private
   def move_to_index
     unless user_signed_in?
