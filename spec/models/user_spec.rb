@@ -14,7 +14,18 @@ describe User do
     context '新規登録がうまくいかないとき' do
       it "ユーザー本名は、名字と名前がそれぞれ必須であること" do
         @user.first_name = ''
-        
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name can't be blank")
+       end
+
+       it "ユーザー本名は、名字と名前がそれぞれ必須であること" do
+        @user.last_name = ''
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Last name can't be blank")
+       end
+
+       it "ユーザー本名は、全角（漢字・ひらがな・カタカナ）での入力が必須であること" do
+        @user.first_name = ''
         @user.valid?
         expect(@user.errors.full_messages).to include("First name can't be blank")
        end
@@ -78,6 +89,12 @@ describe User do
 
       it "パスワードは、半角英数字混合での入力が必須であること" do
         @user.password = "aaaaaa"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+      end
+
+      it "パスワードは、半角英数字混合での入力が必須であること" do
+        @user.password = "111111"
         @user.valid?
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
