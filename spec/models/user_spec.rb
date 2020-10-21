@@ -25,27 +25,51 @@ describe User do
        end
 
        it "ユーザー本名は、全角（漢字・ひらがな・カタカナ）での入力が必須であること" do
-        @user.first_name = ''
+        @user.first_name = 'aaaaaa'
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name can't be blank")
+        expect(@user.errors.full_messages).to include("First name is invalid. Input half-width characters.")
        end
 
        it "ユーザー本名は、全角（漢字・ひらがな・カタカナ）での入力が必須であること" do
-        @user.last_name = ''
+        @user.last_name = 'aaaaaa'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Last name can't be blank")
+        expect(@user.errors.full_messages).to include("Last name is invalid. Input half-width characters.")
        end
       
        it "ユーザー本名のフリガナは、名字と名前でそれぞれ必須であること" do
         @user.first_name_kana = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name kana can't be blank")
+        expect(@user.errors.full_messages).to include("First name kana can't be blank", "First name kana can't be blank", "First name kana is invalid. Input full-width katakana characters.")
+       end
+
+       it "ユーザー本名のフリガナは、名字と名前でそれぞれ必須であること" do
+        @user.last_name_kana = ''
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Last name kana can't be blank", "Last name kana can't be blank", "Last name kana is invalid. Input full-width katakana characters.")
        end
       
        it "ユーザー本名のフリガナは、全角（カタカナ）での入力が必須であること" do
-        @user.last_name_kana = ''
+        @user.first_name_kana = 'aaaaaa'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Last name kana can't be blank")
+        expect(@user.errors.full_messages).to include("First name kana is invalid. Input full-width katakana characters.")
+       end
+      
+       it "ユーザー本名のフリガナは、全角（カタカナ）での入力が必須であること" do
+        @user.last_name_kana = 'aaaaaa'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Last name kana is invalid. Input full-width katakana characters.")
+       end
+
+       it "ユーザー本名のフリガナは、全角（カタカナ）での入力が必須であること" do
+        @user.first_name_kana = 'ああああああ'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name kana is invalid. Input full-width katakana characters.")
+       end
+      
+       it "ユーザー本名のフリガナは、全角（カタカナ）での入力が必須であること" do
+        @user.last_name_kana = 'ああああああ'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Last name kana is invalid. Input full-width katakana characters.")
        end
 
       it "ニックネームが必須であること(nicknameが空だと登録できない)" do
