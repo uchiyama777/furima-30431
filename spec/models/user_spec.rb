@@ -6,17 +6,42 @@ describe User do
 
     describe 'ユーザー新規登録' do
     context '新規登録がうまくいくとき' do
-      it "nicknameとemail、passwordとpassword_confirmationが存在すれば登録できる" do
+      it "nicknameとemail、passwordとpassword_confirmation、本名が存在すれば登録できる" do
         expect(@user).to be_valid
       end
     end
 
     context '新規登録がうまくいかないとき' do
-          it "ニックネームが必須であること(nicknameが空だと登録できない)" do
-            @user.nickname = ''
-            @user.valid?
-            expect(@user.errors.full_messages).to include("Nickname can't be blank")
-          end
+      it "ユーザー本名は、名字と名前がそれぞれ必須であること" do
+        @user.first_name = ''
+        
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name can't be blank")
+       end
+
+       it "ユーザー本名は、全角（漢字・ひらがな・カタカナ）での入力が必須であること" do
+        @user.last_name = ''
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Last name can't be blank")
+       end
+      
+       it "ユーザー本名のフリガナは、名字と名前でそれぞれ必須であること" do
+        @user.first_name_kana = ''
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name kana can't be blank")
+       end
+      
+       it "ユーザー本名のフリガナは、全角（カタカナ）での入力が必須であること" do
+        @user.last_name_kana = ''
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Last name kana can't be blank")
+       end
+
+      it "ニックネームが必須であること(nicknameが空だと登録できない)" do
+       @user.nickname = ''
+       @user.valid?
+       expect(@user.errors.full_messages).to include("Nickname can't be blank")
+      end
 
       it "メールアドレスが必須であること(emailが空では登録できない)" do
         @user.email = ""
@@ -63,6 +88,12 @@ describe User do
         @user.valid?
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
+
+      it "誕生日が空だと登録できない" do
+      @user.birth_day = ''
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Birth day can't be blank")
+       end
 
     end
   end
