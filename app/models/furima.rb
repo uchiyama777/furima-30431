@@ -10,14 +10,14 @@ class Furima < ApplicationRecord
   validates :category, presence: true
   validates :status, presence: true
   validates :delivery_charge, presence: true
-  # validates :prefectures, presence: true
+  validates :prefectures, presence: true
   validates :delivery_day, presence: true
 
   #ジャンルの選択が「--」の時は保存できないようにする
   validates :category_id, numericality: { other_than: 1 }
   validates :status_id, numericality: { other_than: 1 }
   validates :delivery_charge_id, numericality: { other_than: 1 }
-  # validates :prefectures_id, numericality: { other_than: 1 }
+  validates :prefectures_id, numericality: { other_than: 1 }
   validates :delivery_day_id, numericality: { other_than: 1 }
 
   has_one_attached :image
