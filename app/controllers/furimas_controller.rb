@@ -33,6 +33,6 @@ class FurimasController < ApplicationController
   end
 
   def furimas_params
-  params.require(:furimas).permit(:content, :image, :title, :text, :category_id).merge(user_id: current_user.id)
+  params.require(:furimas).permit(:content, :image, :title, :text, :category_id, :status_id, :delivery_charge_id, :prefectures_id, :delivery_day_id).merge(user_id: current_user.id)
   end
 end
