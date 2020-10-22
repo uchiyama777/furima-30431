@@ -8,9 +8,9 @@
 | email              | string              | null: false             |
 | password           | string              | null: false             |
 | first_name         | string              | null: false             |
-| family_name        | string              | null: false             |
+| last_name          | string              | null: false             |
 | first_name_kana    | string              | null: false             |
-| family_name_kana   | string              | null: false             |
+| last_name_kana     | string              | null: false             |
 | birth_day          | date                | null: false             |
 
 ### Association
@@ -19,7 +19,7 @@
 * has_many :comments
 * has_many :purchases
 
-## items table
+## furimas table
 
 | Column                              | Type       | Options           |
 |-------------------------------------|------------|-------------------|
