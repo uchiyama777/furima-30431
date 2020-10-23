@@ -1,5 +1,5 @@
 class FurimasController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show, :new]
+  before_action :authenticate_user!, except: [:index, :show, ]
 
   def index
   end
@@ -10,8 +10,8 @@ class FurimasController < ApplicationController
   end
 
   def create
-    @furimas = Furima.new(furimas_params)
-    if @furimas.save
+    @furima = Furima.new(furimas_params)
+    if @furima.save
       redirect_to root_path
     else
       render :new
@@ -28,6 +28,6 @@ class FurimasController < ApplicationController
  private
 
   def furimas_params
-  params.require(:furimas).permit(:content, :image, :title, :text, :category_id, :status_id, :delivery_charge_id, :prefectures_id, :delivery_day_id).merge(user_id: current_user.id)
+    params.require(:furima).permit(:content, :image, :title, :text, :category_id, :status_id, :delivery_charge_id, :prefectures_id, :delivery_day_id).merge(user_id: current_user.id)
   end
 end

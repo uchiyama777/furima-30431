@@ -3,14 +3,16 @@ class Furima < ApplicationRecord
   belongs_to_active_hash :category
   belongs_to_active_hash :status
   belongs_to_active_hash :delivery_charge
-  # belongs_to_active_hash :prefectures
-  # belongs_to_active_hash :delivery_day
+  belongs_to_active_hash :prefecture
+  belongs_to_active_hash :delivery_day
 
   #空の投稿を保存できないようにする
   validates :category, presence: true
   validates :status, presence: true
   validates :delivery_charge, presence: true
-  validates :prefectures, presence: true
+  # ここのprefecture -> prefectures_idにしたら直った
+  # そもそもここのバリデーションいらない説
+  validates :prefectures_id, presence: true
   validates :delivery_day, presence: true
 
   #ジャンルの選択が「--」の時は保存できないようにする
