@@ -13,6 +13,8 @@ class CreateFurimas < ActiveRecord::Migration[6.0]
       t.integer :prefectures_id, false
       t.integer :delivery_day_id, null: false
       t.integer :price, null: false
+
+      
     end
   end
 end

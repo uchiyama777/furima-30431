@@ -21,4 +21,5 @@ class Furima < ApplicationRecord
   validates :delivery_day_id, numericality: { other_than: 1 }
 
   has_one_attached :image
+  
 end
