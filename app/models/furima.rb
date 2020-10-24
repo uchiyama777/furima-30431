@@ -7,13 +7,15 @@ class Furima < ApplicationRecord
   belongs_to_active_hash :delivery_day
 
   #空の投稿を保存できないようにする
+  validates :image, presence: true
+  validates :name, presence: true
+  validates :description, presence: true
   validates :category, presence: true
   validates :status, presence: true
   validates :delivery_charge, presence: true
-  # ここのprefecture -> prefectures_idにしたら直った
-  # そもそもここのバリデーションいらない説
   validates :prefectures_id, presence: true
   validates :delivery_day, presence: true
+  validates :price, presence: true
 
   #ジャンルの選択が「--」の時は保存できないようにする
   validates :category_id, numericality: { other_than: 1 }
@@ -22,6 +24,10 @@ class Furima < ApplicationRecord
   validates :prefectures_id, numericality: { other_than: 1 }
   validates :delivery_day_id, numericality: { other_than: 1 }
 
+  validates :price, numericality: { greater_than_or_equal_to: 300 }
+  validates :price, numericality: { less_than_or_equal_to: 9999999 }
+
   has_one_attached :image
+  belongs_to :user
   
 end
