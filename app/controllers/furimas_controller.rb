@@ -5,7 +5,6 @@ class FurimasController < ApplicationController
   end
 
   def new
-    @furimas = Furima.order("created_at DESC")
     @furima = Furima.new
   end
 
