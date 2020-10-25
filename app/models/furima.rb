@@ -8,15 +8,15 @@ class Furima < ApplicationRecord
 
   #空の投稿を保存できないようにする
   with_options presence: true do
-  validates :image
-  validates :name 
-  validates :description 
-  validates :category
-  validates :status
-  validates :delivery_charge 
-  validates :prefectures_id 
-  validates :delivery_day
-  validates :price
+   validates :image
+   validates :name 
+   validates :description 
+   validates :category
+   validates :status
+   validates :delivery_charge 
+   validates :prefectures_id 
+   validates :delivery_day
+   validates :price
   end
 
   #ジャンルの選択が「--」の時は保存できないようにする
