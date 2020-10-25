@@ -1,5 +1,5 @@
 class FurimasController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show, ]
+  before_action :authenticate_user!, except: [:index, :show ]
 
   def index
   end
@@ -27,6 +27,6 @@ class FurimasController < ApplicationController
  private
 
   def furimas_params
-    params.require(:furima).permit(:content, :image, :title, :text, :name, :parameters, :description, :price, :category_id, :status_id, :delivery_charge_id, :prefectures_id, :delivery_day_id).merge(user_id: current_user.id)
+    params.require(:furima).permit(:image, :name, :description, :price, :category_id, :status_id, :delivery_charge_id, :prefectures_id, :delivery_day_id).merge(user_id: current_user.id)
   end
 end

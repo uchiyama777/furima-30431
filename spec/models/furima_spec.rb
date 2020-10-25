@@ -30,9 +30,15 @@ RSpec.describe Furima, type: :model do
     end
 
     it 'カテゴリーの情報が必須であること' do
-      @furima.category = nil
+      @furima.category_id = nil
       @furima.valid?
       expect(@furima.errors.full_messages).to include("Category can't be blank", "Category is not a number")
+    end
+
+    it 'カテゴリーの情報に1が入ると登録できない' do
+      @furima.category_id = 1
+      @furima.valid?
+      expect(@furima.errors.full_messages).to include("Category must be other than 1")
     end
 
     it '商品の状態についての情報が必須であること' do
@@ -41,10 +47,22 @@ RSpec.describe Furima, type: :model do
       expect(@furima.errors.full_messages).to include("Status can't be blank", "Status is not a number")
     end
 
+    it '商品の状態についての情報に1が入ると登録できない' do
+      @furima.status_id = 1
+      @furima.valid?
+      expect(@furima.errors.full_messages).to include("Status must be other than 1")
+    end
+
     it '配送料の負担についての情報が必須であること' do
       @furima.delivery_charge_id = nil
       @furima.valid?
       expect(@furima.errors.full_messages).to include("Delivery charge can't be blank", "Delivery charge is not a number")
+    end
+
+    it '配送料の負担についての情報に1が入ると登録できない' do
+      @furima.delivery_charge_id = 1
+      @furima.valid?
+      expect(@furima.errors.full_messages).to include("Delivery charge must be other than 1")
     end
 
     it '発送元の地域についての情報が必須であること' do
@@ -53,10 +71,22 @@ RSpec.describe Furima, type: :model do
       expect(@furima.errors.full_messages).to include("Prefectures can't be blank", "Prefectures is not a number")
     end
 
+    it '発送元の地域についての情報に1が入ると登録できない' do
+      @furima.prefectures_id = 1
+      @furima.valid?
+      expect(@furima.errors.full_messages).to include("Prefectures must be other than 1")
+    end
+
     it '発送までの日数についての情報が必須であること' do
       @furima.delivery_day_id = nil
       @furima.valid?
       expect(@furima.errors.full_messages).to include("Delivery day can't be blank", "Delivery day is not a number")
+    end
+
+    it '発送までの日数についての情報に1が入ると登録できない' do
+      @furima.delivery_day_id = 1
+      @furima.valid?
+      expect(@furima.errors.full_messages).to include("Delivery day must be other than 1")
     end
 
     it '価格についての情報が必須であること' do
