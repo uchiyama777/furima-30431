@@ -15,7 +15,7 @@
 
 ### Association
 
-* has_many :items
+* has_many :furimas
 * has_many :comments
 * has_many :purchases
 
@@ -43,7 +43,7 @@
 | Column      | Type       | Options           |
 |-------------|------------|-------------------|
 | text        | text       | null: false       |
-| item_id     | references | foreign_key: true |
+| furima_id     | references | foreign_key: true |
 | user_id     | references | foreign_key: true |
 
 ### Association
@@ -55,7 +55,7 @@
 
 | Column      | Type       | Options           |
 |-------------|------------|-------------------|
-| item        | references | foreign_key: true |
+| furima        | references | foreign_key: true |
 | user        | references | foreign_key: true |
 
 ### Association
