@@ -1,14 +1,20 @@
 class FurimasController < ApplicationController
-
-  before_action :move_to_index, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show ]
 
   def index
   end
 
   def new
+    @furima = Furima.new
   end
 
   def create
+    @furima = Furima.new(furimas_params)
+    if @furima.save
+      redirect_to root_path
+    else
+      render :new
+    end
   end
 
   def destroy
@@ -19,10 +25,8 @@ class FurimasController < ApplicationController
 
 
  private
-  def move_to_index
-    unless user_signed_in?
-      redirect_to action: :index
-    end
-  end
 
+  def furimas_params
+    params.require(:furima).permit(:image, :name, :description, :price, :category_id, :status_id, :delivery_charge_id, :prefectures_id, :delivery_day_id).merge(user_id: current_user.id)
+  end
 end
