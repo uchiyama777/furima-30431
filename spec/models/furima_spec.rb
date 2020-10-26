@@ -66,15 +66,15 @@ RSpec.describe Furima, type: :model do
     end
 
     it '発送元の地域についての情報が必須であること' do
-      @furima.prefectures_id = nil
+      @furima.prefecture_id = nil
       @furima.valid?
-      expect(@furima.errors.full_messages).to include("Prefectures can't be blank", "Prefectures is not a number")
+      expect(@furima.errors.full_messages).to include("Prefecture can't be blank", "Prefecture is not a number")
     end
 
     it '発送元の地域についての情報に1が入ると登録できない' do
-      @furima.prefectures_id = 1
+      @furima.prefecture_id = 1
       @furima.valid?
-      expect(@furima.errors.full_messages).to include("Prefectures must be other than 1")
+      expect(@furima.errors.full_messages).to include("Prefecture must be other than 1")
     end
 
     it '発送までの日数についての情報が必須であること' do

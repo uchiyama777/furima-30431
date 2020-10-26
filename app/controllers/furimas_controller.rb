@@ -18,6 +18,13 @@ class FurimasController < ApplicationController
     end
   end
 
+  def show
+    @furima = Furima.find(params[:id])
+  end
+
+  def edit
+  end
+
   def destroy
   end
 
@@ -28,6 +35,6 @@ class FurimasController < ApplicationController
  private
 
   def furimas_params
-    params.require(:furima).permit(:image, :name, :description, :price, :category_id, :status_id, :delivery_charge_id, :prefectures_id, :delivery_day_id).merge(user_id: current_user.id)
+    params.require(:furima).permit(:image, :name, :description, :price, :category_id, :status_id, :delivery_charge_id, :prefecture_id, :delivery_day_id).merge(user_id: current_user.id)
   end
 end
