@@ -33,8 +33,7 @@ class FurimasController < ApplicationController
 
 
   def update
-    @furima.update(furimas_params)
-    if @furima.save
+    if @furima.update(furimas_params)
       redirect_to furima_path
     else
       render :edit
