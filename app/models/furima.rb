@@ -14,7 +14,7 @@ class Furima < ApplicationRecord
    validates :category
    validates :status
    validates :delivery_charge 
-   validates :prefectures_id 
+   validates :prefecture_id 
    validates :delivery_day
    validates :price
   end
@@ -24,7 +24,7 @@ class Furima < ApplicationRecord
   validates :category_id
   validates :status_id
   validates :delivery_charge_id 
-  validates :prefectures_id
+  validates :prefecture_id
   validates :delivery_day_id 
   end
 
