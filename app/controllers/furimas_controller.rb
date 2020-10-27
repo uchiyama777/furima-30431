@@ -24,7 +24,7 @@ class FurimasController < ApplicationController
     @furima.destroy
     redirect_to root_path
     else
-    redirect_to root_path
+    render :show
     end
   end
 
