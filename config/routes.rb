@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get 'furimas/index'
   root to: "furimas#index"
   resources :furimas, only: [:new, :create, :show, :edit, :update, :destroy] do
-   resources :purchases, only: [:create, :index]
+   resources :purchases, only: [:index, :create]
   end
   resources :users, only: :show 
   
