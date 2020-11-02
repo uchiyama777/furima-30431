@@ -1,11 +1,11 @@
 class PurchaseForm
   include ActiveModel::Model
-  attr_accessor :postal_code, :prefecture_id, :city, :municipality,:building_name, :phone_number, :furima_id, :user_id
+  attr_accessor :postal_code, :prefecture_id, :city, :municipality,:building_name, :phone_number, :furima_id, :user_id, :token
   # 2つのテーブルのバリデーションを書く
   with_options presence: true do
    validates :city
    validates :municipality
-   validates :building_name
+   validates :token
   end
 
   with_options presence: true, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"} do
