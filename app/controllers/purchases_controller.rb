@@ -34,7 +34,6 @@ class PurchasesController < ApplicationController
   end
 
   def pay_item
-    Payjp.api_key = "sk_test_5281a7815c10499a90a34a4d"  # 自身のPAY.JPテスト秘密鍵を記述しましょう
     Payjp::Charge.create(
       amount: @furima.price,  # 商品の値段
       card: purchase_params[:token],    # カードトークン

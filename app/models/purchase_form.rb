@@ -6,17 +6,28 @@ class PurchaseForm
    validates :city
    validates :municipality
    validates :token
+   validates :postal_code
+   validates :phone_number
+   validates :prefecture_id
   end
 
-  with_options presence: true, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"} do
+  with_options format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"} do
    validates :postal_code
   end
 
-  with_options presence: true, format: {with: /\A[a-zA-Z0-9]+\z/} do
+  with_options format: {with: /\A[a-zA-Z0-9]+\z/} do
+  validates :phone_number
+  end
+
+  with_options format: {with: /\A\d{11}\z/} do
+    validates :phone_number
+    end
+  
+  with_options numericality: { less_than_or_equal_to: 99999999999 } do
    validates :phone_number
   end
 
-  with_options presence: true, numericality: { other_than: 1 }  do
+  with_options numericality: { other_than: 1 }  do
    validates :prefecture_id
   end
 
