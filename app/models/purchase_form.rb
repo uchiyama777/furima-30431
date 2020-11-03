@@ -11,21 +11,10 @@ class PurchaseForm
    validates :prefecture_id
   end
 
-  with_options format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"} do
-   validates :postal_code
-  end
-
-  with_options format: {with: /\A[a-zA-Z0-9]+\z/} do
-   validates :phone_number
-  end
-  
-  with_options format: {with: /\A\d{11}\z/ } do
-   validates :phone_number
-  end
-
-  with_options numericality: { other_than: 1 }  do
-   validates :prefecture_id
-  end
+  validates :postal_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
+  validates :phone_number, format: {with: /\A[a-zA-Z0-9]+\z/}
+  validates :phone_number, length: { maximum: 11, message: 'Too long' }
+  validates :prefecture_id, numericality: { other_than: 1 } 
 
   def save
     # 各テーブルにデータを保存する処理を書く。割り振るための記述をする(テーブル間の関係性を記述すれば、アソシエーションを定義しなくても保存される。)
