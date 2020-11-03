@@ -16,12 +16,8 @@ class PurchaseForm
   end
 
   with_options format: {with: /\A[a-zA-Z0-9]+\z/} do
-  validates :phone_number
+   validates :phone_number
   end
-
-  with_options format: {with: /\A\d{11}\z/} do
-    validates :phone_number
-    end
   
   with_options numericality: { less_than_or_equal_to: 99999999999 } do
    validates :phone_number

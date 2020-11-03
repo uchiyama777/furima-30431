@@ -61,6 +61,7 @@ RSpec.describe PurchaseForm, type: :model do
   it "電話番号が12桁以上では登録できないこと" do
     @purchase.phone_number = "100000000000"
     @purchase.valid?
+    binding.pry
     expect(@purchase.errors.full_messages).to include("Phone number must be less than or equal to 99999999999")
   end
 
