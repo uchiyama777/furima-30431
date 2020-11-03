@@ -3,7 +3,17 @@ require 'rails_helper'
 
 RSpec.describe PurchaseForm, type: :model do
   before do
-    @purchase = FactoryBot.build(:purchase_form)
+  # ユーザーを二人分クリエイト
+  @seller = FactoryBot.create(:user)
+  @buyer = FactoryBot.create(:user)
+
+  # 商品をクリエイトする（ユーザー１を結びつける）
+  # sellerとfurimaを関連付ける
+  @furima = FactoryBot.create(:furima, user_id: @seller.id)
+
+  # 商品の内容とユーザー2を購入履歴に結びつけてビルド
+  # purchaseとfurimaとbuyerを関連付ける
+  @purchase = FactoryBot.build(:purchase_form, furima_id: @furima.id, user_id: @buyer.id)
   end
 
   it "すべての必須な項目の情報が入力されていれば登録できる" do
@@ -61,13 +71,13 @@ RSpec.describe PurchaseForm, type: :model do
   it "電話番号が12桁以上では登録できないこと" do
     @purchase.phone_number = "100000000000"
     @purchase.valid?
-    expect(@purchase.errors.full_messages).to include("Phone number must be less than or equal to 99999999999")
+    expect(@purchase.errors.full_messages).to include("Phone number is invalid")
   end
 
   it "電話番号がハイフンが入ると登録できないこと" do
     @purchase.phone_number = "090-1234-5678"
     @purchase.valid?
-    expect(@purchase.errors.full_messages).to include("Phone number is invalid", "Phone number is not a number")
+    expect(@purchase.errors.full_messages).to include("Phone number is invalid", "Phone number is invalid")
   end
 
 end
