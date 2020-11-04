@@ -29,7 +29,7 @@
 | category_id                         | integer    | null: false       |
 | status_id                           | integer    | null: false       |
 | delivery_charge_id                  | integer    | null: false       |
-| prefecture_id                      | integer    | null: false       |
+| prefecture_id                       | integer    | null: false       |
 | delivery_day_id                     | integer    | null: false       |
 | price                               | integer    | null: false       |
 
@@ -43,33 +43,33 @@
 | Column      | Type       | Options           |
 |-------------|------------|-------------------|
 | text        | text       | null: false       |
-| furima_id     | references | foreign_key: true |
+| furima_id   | references | foreign_key: true |
 | user_id     | references | foreign_key: true |
 
 ### Association
 
-- belongs_to :item
+- belongs_to :furima
 - belongs_to :user
 
-## purchases table
+## purchases table　(form objet割り振り先)
 
 | Column      | Type       | Options           |
 |-------------|------------|-------------------|
-| furima        | references | foreign_key: true |
+| furima      | references | foreign_key: true |
 | user        | references | foreign_key: true |
 
 ### Association
 
-- belongs_to :item
+- belongs_to :furima
 - belongs_to :user
 - has_one :profile
 
-## profile table
+## profile table　　(form objet割り振り先)
 
 | Column             | Type                | Options                 |
 |--------------------|---------------------|-------------------------|
 | postal_code        | string              | null: false             |
-| prefecture_id     | integer             | null: false             |
+| prefecture_id      | integer             | null: false             |
 | city               | string              | null: false             |
 | municipality       | string              | null: false             |
 | building_name      | string              |                         |

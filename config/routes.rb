@@ -3,9 +3,9 @@ Rails.application.routes.draw do
   devise_for :users
   get 'furimas/index'
   root to: "furimas#index"
-  resources :furimas, only: [:new, :create, :show, :edit, :update, :destroy] do
-   resources :purchases, only: :create 
+  resources :furimas, except: [:index] do
+   resources :purchases, only: [:index, :create]
   end
-    resources :users, only: :show 
+  resources :users, only: :show 
   
  end
